@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Navigate, Route } from "react-router";
+import { Route } from "react-router";
 import { Routes } from "react-router-dom";
 
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
@@ -16,6 +16,7 @@ const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 const RegisterPage = React.lazy(
   () => import("./pages/RegisterPage/RegisterPage")
 );
+const Page404 = React.lazy(() => import("./pages/Page404/Page404"));
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </Suspense>

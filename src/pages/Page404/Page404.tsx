@@ -3,14 +3,10 @@ import Button from "@mui/material/Button/Button";
 
 import s from "./ErrorPage.module.scss";
 
-interface ErrorPageProps {
-  error: Error;
-}
-
-const ErrorPage: FC<ErrorPageProps> = ({ error }) => {
+const Page404: FC = () => {
   return (
     <div className={s.errorContainer}>
-      <p className={s.error}>{`⚠ Error: ${error.message}`}</p>
+      <p className={s.error}>{`⚠ Error: Page Not Found`}</p>
       <Button
         variant="contained"
         sx={{ mt: 4 }}
@@ -21,4 +17,4 @@ const ErrorPage: FC<ErrorPageProps> = ({ error }) => {
   );
 };
 
-export default ErrorPage;
+export default Page404;
