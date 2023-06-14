@@ -1,0 +1,31 @@
+.container {
+  justify-content: flex-start;
+}
+
+.title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.articlesList {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.loadMoreBtnContainer {
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: fit-content;
+}
