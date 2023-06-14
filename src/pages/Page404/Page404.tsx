@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Button from "@mui/material/Button/Button";
 
-import s from "./ErrorPage.module.scss";
+import s from "./Page404.module.scss";
 
 const Page404: FC = () => {
   return (
