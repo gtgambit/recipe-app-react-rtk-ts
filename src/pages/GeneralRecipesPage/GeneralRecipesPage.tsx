@@ -9,7 +9,7 @@ import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { fetchRecipes } from "../../store/recipes/recipesThunks";
 
-import ErrorPage from "../Page404/Page404";
+import Page404 from "../Page404/Page404";
 
 import s from "./GeneralRecipesPage.module.scss";
 import { Loader } from "../../components/Loader/Loader";
@@ -53,7 +53,7 @@ const GeneralRecipesPage = () => {
   };
 
   if (error) {
-    return <ErrorPage error={error} />;
+    return <Page404 />;
   }
 
   return (
