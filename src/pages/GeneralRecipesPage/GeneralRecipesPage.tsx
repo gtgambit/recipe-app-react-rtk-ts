@@ -59,7 +59,6 @@ const GeneralRecipesPage = () => {
   return (
     <section>
       <div className={`container ${s.container}`}>
-        <h1 className={s.title}>News</h1>
         <Input
           onChange={onChangeInput}
           value={query}
