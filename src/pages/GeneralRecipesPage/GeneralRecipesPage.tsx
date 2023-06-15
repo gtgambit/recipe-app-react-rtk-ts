@@ -5,10 +5,11 @@ import Input from "@mui/material/Input";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, Typography } from "@mui/material";
 
+import Page404 from "../Page404/Page404";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { fetchRecipes } from "../../store/recipes/recipesThunks";
-import Page404 from "../Page404/Page404";
+
 import { Loader } from "../../components/Loader/Loader";
 import { Recipe } from "../../types/types";
 

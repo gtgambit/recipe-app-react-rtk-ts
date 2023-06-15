@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 import { useAppSelector } from "../../hooks/redux-hooks";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import { Loader } from "../../components/Loader/Loader";
 import Page404 from "../Page404/Page404";
+import { Loader } from "../../components/Loader/Loader";
 
 import s from "./FavoriteRecipesPage.module.scss";
 
