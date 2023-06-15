@@ -46,7 +46,7 @@ const Header = () => {
           ) : (
             <Button sx={{ p: 0 }} variant="outlined">
               <NavLink to="/login" className={s.loginLink}>
-                Login
+                Sign In
               </NavLink>
             </Button>
           )}

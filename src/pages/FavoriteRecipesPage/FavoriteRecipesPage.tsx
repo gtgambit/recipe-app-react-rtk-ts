@@ -14,6 +14,8 @@ const FavoriteRecipesPage = () => {
     (state) => state.recipes
   );
 
+  const { token } = useAppSelector((state) => state.auth);
+
   useEffect(() => {}, []);
 
   if (error) {
@@ -27,17 +29,30 @@ const FavoriteRecipesPage = () => {
           <Loader />
         ) : (
           <>
-            <Grid container spacing={3}>
-              {!favoriteRecipes.length && (
-                <Typography variant="h6" sx={{ margin: "0 auto", mt: 4 }}>
-                  Recipes not found
-                </Typography>
-              )}
+            {token ? (
+              <Grid container spacing={3}>
+                {!favoriteRecipes.length && (
+                  <Typography variant="h6" sx={{ margin: "0 auto", mt: 4 }}>
+                    Recipes not found
+                  </Typography>
+                )}
 
-              {favoriteRecipes.map((recipe) => (
-                <RecipeCard recipe={recipe} key={recipe.idMeal} />
-              ))}
-            </Grid>
+                {favoriteRecipes.map((recipe) => (
+                  <RecipeCard recipe={recipe} key={recipe.idMeal} />
+                ))}
+              </Grid>
+            ) : (
+              <Typography
+                sx={{
+                  color: "red",
+                  fontSize: "36px",
+                  textAlign: "center",
+                  margin: "0 auto",
+                }}>
+                Sign in <br />
+                to see Favorite recipes
+              </Typography>
+            )}
           </>
         )}
       </div>

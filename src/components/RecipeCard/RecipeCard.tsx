@@ -1,9 +1,10 @@
 import React, { FC } from "react";
-import { Grid, IconButton } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
 import { Card, CardMedia, CardContent, Typography, Link } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { useAppDispatch } from "../../hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   deleteRecipe,
   toggleIsFavorite,
@@ -23,12 +24,14 @@ interface RecipeCardProps {
 const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
   const dispatch = useAppDispatch();
 
+  const token = useAppSelector((state) => state.auth.token);
+
   const onClickToggleIsFavorite = () => {
     dispatch(toggleIsFavorite(recipe));
   };
 
   const onClickDeleteRecipe: React.MouseEventHandler<HTMLButtonElement> = (
-    e
+    e: React.SyntheticEvent
   ) => {
     e.preventDefault();
     dispatch(deleteRecipe(recipe.idMeal));
@@ -42,10 +45,21 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card sx={classes.root}>
-        <Typography variant="body1" component="p" sx={classes.titleMain}>
-          {recipe.strMeal}
-        </Typography>
-
+        {token ? (
+          <Typography variant="body1" component="p" sx={classes.titleMain}>
+            {recipe.strMeal}
+          </Typography>
+        ) : (
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "red",
+              marginBottom: "5px",
+              marginTop: "5px",
+            }}>
+            Sign in to see Recipe title
+          </Typography>
+        )}
         <Link
           href={recipe.strYoutube}
           target="_blank"
@@ -58,29 +72,41 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
             alt={title}
             onError={handleImageError}
           />
-          <CardContent>
+          <CardContent sx={{ marginBottom: "0px" }}>
             <Typography variant="body1" component="p" sx={classes.title}>
               {title}
             </Typography>
           </CardContent>
         </Link>
-        <IconButton
-          aria-label="star"
-          sx={classes.favoriteBtn}
-          onClick={onClickToggleIsFavorite}>
-          <Star sx={{ fill: recipe.isFavorite ? "gold" : "white" }} />
-        </IconButton>
-        {
-          <IconButton
-            aria-label="delete"
-            sx={classes.deleteBtn}
-            onClick={onClickDeleteRecipe}>
-            <DeleteIcon />
-          </IconButton>
-        }
+        {token ? (
+          <>
+            <IconButton
+              aria-label="star"
+              sx={classes.favoriteBtn}
+              onClick={onClickToggleIsFavorite}>
+              <Star sx={{ fill: recipe.isFavorite ? "gold" : "white" }} />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              sx={classes.deleteBtn}
+              onClick={onClickDeleteRecipe}>
+              <DeleteIcon />
+            </IconButton>
+          </>
+        ) : (
+          <Typography
+            sx={{
+              textAlign: "center",
+              margin: "0 auto",
+              color: "red",
+              marginBottom: "5px",
+            }}>
+            Sign In to unlock all Functional
+          </Typography>
+        )}
       </Card>
     </Grid>
   );
 };
 
-export default React.memo(RecipeCard);
+export default RecipeCard;

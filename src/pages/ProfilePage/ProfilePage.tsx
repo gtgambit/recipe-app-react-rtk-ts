@@ -57,7 +57,7 @@ const ProfilePage = () => {
               loadingIndicator="Loading…"
               variant="outlined"
               sx={{ width: "100%", mt: 4 }}>
-              Logout
+              Sign out
             </LoadingButton>
           </CardContent>
         </Card>

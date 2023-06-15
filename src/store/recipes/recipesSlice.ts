@@ -9,6 +9,7 @@ interface InitialState {
   favoriteRecipes: Recipe[];
   isLoading: boolean;
   error: null | Error;
+  filter: string;
 }
 
 const initialState: InitialState = {
@@ -16,6 +17,7 @@ const initialState: InitialState = {
   favoriteRecipes: [],
   isLoading: false,
   error: null,
+  filter: "",
 };
 
 export const recipesSlice = createSlice({
