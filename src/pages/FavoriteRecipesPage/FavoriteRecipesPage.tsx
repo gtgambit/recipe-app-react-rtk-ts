@@ -50,7 +50,7 @@ const FavoriteRecipesPage = () => {
                   margin: "0 auto",
                 }}>
                 Sign in <br />
-                to see Favorite recipes
+                to access favorite recipes
               </Typography>
             )}
           </>

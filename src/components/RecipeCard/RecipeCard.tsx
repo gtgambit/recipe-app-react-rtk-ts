@@ -57,7 +57,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
               marginBottom: "5px",
               marginTop: "5px",
             }}>
-            Sign in to see Recipe title
+            Sign in to access Recipe title
           </Typography>
         )}
         <Link
@@ -106,7 +106,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
               color: "red",
               marginBottom: "5px",
             }}>
-            Sign In to unlock all Functional
+            Sign in to access all functionality
           </Typography>
         )}
       </Card>
