@@ -45,7 +45,7 @@ const GeneralRecipesPage = () => {
     return () => {
       abortConRef.current?.abort();
     };
-  }, []);
+  }, [dispatch]);
 
   const onSubmit = () => {
     const filteredRecipes = filterMealsByNameOrLetter(recipes, inputValue);

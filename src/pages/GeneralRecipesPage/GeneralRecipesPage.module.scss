@@ -15,17 +15,3 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-
-.articlesList {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.loadMoreBtnContainer {
-  margin: 0 auto;
-  margin-top: 2rem;
-  width: fit-content;
-}
