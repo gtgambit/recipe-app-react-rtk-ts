@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
+
 import { useAppSelector } from "../../../hooks/redux-hooks";
 import Button from "@mui/material/Button/Button";
-import logo from "./../../../assets/logo.png";
+
 import s from "./Header.module.scss";
+
+import logo from "./../../../assets/logo.png";
 
 const Header = () => {
   const token = useAppSelector((state: any) => state.auth.token);

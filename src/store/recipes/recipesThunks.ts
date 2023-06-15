@@ -2,21 +2,14 @@ import { recipesApi } from "../../api/recipesApi";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RecipesApiResponse } from "../../types/types";
 
-interface FetchRecipesParams {
-  signal: AbortSignal;
-}
-
 export const fetchRecipes = createAsyncThunk<
   RecipesApiResponse,
-  FetchRecipesParams,
+  undefined,
   { rejectValue: string | Error }
->("recipes/fetchAll", async ({ signal }, { rejectWithValue }) => {
+>("recipes/fetchAll", async (_, { rejectWithValue }) => {
   try {
-    return await recipesApi.getRecipesByLetter(signal);
+    return await recipesApi.getRecipesByLetter();
   } catch (error) {
-    if (signal.aborted) {
-      return rejectWithValue("aborted");
-    }
     if (error instanceof Error) {
       return rejectWithValue(error);
     }

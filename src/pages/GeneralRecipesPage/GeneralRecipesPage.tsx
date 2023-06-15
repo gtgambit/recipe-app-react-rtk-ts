@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Grid from "@mui/material/Grid";
 import Input from "@mui/material/Input";
@@ -19,32 +19,22 @@ const filterMealsByNameOrLetter = (recipes: Recipe[], inputValue: string) => {
   return recipes.filter((recipe) => {
     const recipeName = recipe.strMeal.toLowerCase();
     const filterValue = inputValue.toLowerCase();
-    return (
-      recipeName.includes(filterValue) || recipeName.startsWith(filterValue)
-    );
+    return recipeName.includes(filterValue);
   });
 };
 
 const GeneralRecipesPage = () => {
   const dispatch = useAppDispatch();
+
+  const [inputValue, setInputValue] = useState("");
+  const [filteredRecipeList, setFilteredRecipeList] = useState<Recipe[]>([]);
+
   const { recipes, isLoading, error } = useAppSelector(
     (state) => state.recipes
   );
 
-  const [inputValue, setInputValue] = useState("");
-  const abortConRef = useRef<AbortController | null>(null);
-  const [filteredRecipeList, setFilteredRecipeList] = useState<Recipe[]>([]);
-
   useEffect(() => {
-    abortConRef.current = new AbortController();
-    dispatch(
-      fetchRecipes({
-        signal: abortConRef.current.signal,
-      })
-    );
-    return () => {
-      abortConRef.current?.abort();
-    };
+    dispatch(fetchRecipes());
   }, [dispatch]);
 
   const onSubmit = () => {

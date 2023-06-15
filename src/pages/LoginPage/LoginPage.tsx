@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
 
 import { LoadingButton } from "@mui/lab";
 import Avatar from "@mui/material/Avatar";
@@ -13,7 +14,6 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 
-import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { auth } from "../../utils/firebase";
 import { setAuthData } from "../../store/auth/authSlice";
@@ -28,10 +28,11 @@ interface IFormInputs {
 
 export default function LoginPage() {
   const dispatch = useAppDispatch();
-  const token = useAppSelector((state) => state.auth.token);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
+
+  const token = useAppSelector((state) => state.auth.token);
 
   const handleLogIn = async (email: string, password: string) => {
     try {

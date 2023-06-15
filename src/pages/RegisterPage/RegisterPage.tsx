@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
@@ -16,8 +17,6 @@ import { LoadingButton } from "@mui/lab";
 import { setAuthData } from "../../store/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { schema } from "../LoginPage/schema";
-
-import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 
 import backgroundImg from "../../assets/register.jpg";
@@ -29,10 +28,11 @@ interface IFormInputs {
 
 export default function RegisterPage() {
   const dispatch = useAppDispatch();
-  const token = useAppSelector((state) => state.auth.token);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>("");
+
+  const token = useAppSelector((state) => state.auth.token);
 
   const signUp = async (email: string, password: string) => {
     try {

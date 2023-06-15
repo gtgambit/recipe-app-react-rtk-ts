@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 import { LoadingButton } from "@mui/lab";
 import { Card, CardMedia, Typography, CardContent } from "@mui/material";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { logout } from "../../store/auth/authSlice";
-import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 
 import { classes } from "./ProfilePageStyle";
@@ -14,8 +14,10 @@ import user from "../../assets/user.png";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const { token, email } = useAppSelector((state) => state.auth);
+
   const [isLoading, setIsLoading] = useState(false);
+
+  const { token, email } = useAppSelector((state) => state.auth);
 
   const onClickLogout = async () => {
     try {

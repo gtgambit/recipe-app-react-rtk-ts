@@ -11,7 +11,7 @@ const Page404: FC = () => {
       <p className={s.error}>{`⚠ Error: Page Not Found`}</p>
       <NavLink to="/">
         <Button variant="contained" sx={{ mt: 4 }}>
-          Back to Home{" "}
+          Back to Home
         </Button>
       </NavLink>
     </div>

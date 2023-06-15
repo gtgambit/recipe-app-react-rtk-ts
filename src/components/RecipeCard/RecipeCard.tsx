@@ -23,7 +23,9 @@ interface RecipeCardProps {
 const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
   const location = useLocation();
   const dispatch = useAppDispatch();
+
   const token = useAppSelector((state) => state.auth.token);
+
   const onClickToggleIsFavorite = () => {
     dispatch(toggleIsFavorite(recipe));
   };

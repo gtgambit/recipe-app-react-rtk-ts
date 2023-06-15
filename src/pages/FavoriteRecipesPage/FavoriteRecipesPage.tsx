@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
@@ -14,10 +12,7 @@ const FavoriteRecipesPage = () => {
   const { isLoading, error, favoriteRecipes } = useAppSelector(
     (state) => state.recipes
   );
-
   const { token } = useAppSelector((state) => state.auth);
-
-  useEffect(() => {}, []);
 
   if (error) {
     return <Page404 />;

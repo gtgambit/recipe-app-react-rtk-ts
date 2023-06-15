@@ -55,9 +55,6 @@ export const recipesSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchRecipes.rejected, (state, action) => {
-        if (action.payload === "aborted") {
-          return;
-        }
         if (action.payload instanceof Error) {
           state.error = action.payload;
         }
