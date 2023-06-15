@@ -1,31 +1,28 @@
 import React, { FC } from "react";
+import { useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import { Card, CardMedia, CardContent, Typography, Link } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Star from "@mui/icons-material/Star";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import {
   deleteRecipe,
   toggleIsFavorite,
 } from "../../store/recipes/recipesSlice";
-
 import { handleImageError } from "../../utils/imageErrorHandler";
 import { Recipe } from "../../types/types";
-
 import { classes } from "./RecipeCardStyle";
-
-import Star from "@mui/icons-material/Star";
 
 interface RecipeCardProps {
   recipe: Recipe;
 }
 
 const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
-
   const token = useAppSelector((state) => state.auth.token);
-
   const onClickToggleIsFavorite = () => {
     dispatch(toggleIsFavorite(recipe));
   };
@@ -41,6 +38,8 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
     recipe.strInstructions.length > 60
       ? `${recipe.strInstructions.slice(0, 60)}...`
       : recipe.strInstructions;
+
+  const isFavoritePage = location.pathname.includes("/favorite");
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -80,18 +79,23 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
         </Link>
         {token ? (
           <>
+            {}
             <IconButton
               aria-label="star"
               sx={classes.favoriteBtn}
               onClick={onClickToggleIsFavorite}>
               <Star sx={{ fill: recipe.isFavorite ? "gold" : "white" }} />
             </IconButton>
-            <IconButton
-              aria-label="delete"
-              sx={classes.deleteBtn}
-              onClick={onClickDeleteRecipe}>
-              <DeleteIcon />
-            </IconButton>
+            {isFavoritePage ? (
+              <></>
+            ) : (
+              <IconButton
+                aria-label="delete"
+                sx={classes.deleteBtn}
+                onClick={onClickDeleteRecipe}>
+                <DeleteIcon />
+              </IconButton>
+            )}
           </>
         ) : (
           <Typography

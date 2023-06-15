@@ -1,15 +1,14 @@
-import { Recipe, RecipesApiResponse } from "../../types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchRecipes } from "./recipesThunks";
 import { setIsFavorite } from "../../utils/setIsFavorite";
 import { addRecipe, removeRecipe } from "../../utils/toggleFavoriteRecipe";
+import { Recipe } from "../../types/types";
 
 interface InitialState {
   recipes: Recipe[];
   favoriteRecipes: Recipe[];
   isLoading: boolean;
-  error: null | Error;
-  filter: string;
+  error: Error | null;
 }
 
 const initialState: InitialState = {
@@ -17,40 +16,39 @@ const initialState: InitialState = {
   favoriteRecipes: [],
   isLoading: false,
   error: null,
-  filter: "",
 };
 
 export const recipesSlice = createSlice({
   name: "recipes",
   initialState,
   reducers: {
-    setRecipes(state, { payload }: PayloadAction<RecipesApiResponse>) {
-      const recipes = setIsFavorite(payload.meals, state.favoriteRecipes);
-      state.recipes = recipes;
-    },
-    deleteRecipe: (state, action) => {
+    deleteRecipe: (state, action: PayloadAction<string>) => {
       state.recipes = state.recipes.filter(
         (recipe) => recipe.idMeal !== action.payload
       );
     },
-    toggleIsFavorite(state, action: PayloadAction<Recipe>) {
-      state.recipes = state.recipes.map((recipe) => {
-        return recipe.idMeal === action.payload.idMeal
+    toggleIsFavorite: (state, action: PayloadAction<Recipe>) => {
+      const { idMeal } = action.payload;
+      state.recipes = state.recipes.map((recipe) =>
+        recipe.idMeal === idMeal
           ? { ...recipe, isFavorite: !recipe.isFavorite }
-          : recipe;
-      });
+          : recipe
+      );
       const isExist = state.favoriteRecipes.find(
-        (recipe) => recipe.idMeal === action.payload.idMeal
+        (recipe) => recipe.idMeal === idMeal
       );
       state.favoriteRecipes = isExist
-        ? removeRecipe(action.payload.idMeal, state.favoriteRecipes)
+        ? removeRecipe(idMeal, state.favoriteRecipes)
         : addRecipe(action.payload, state.favoriteRecipes);
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipes.fulfilled, (state, action) => {
-        state.recipes = action.payload?.meals;
+        state.recipes = setIsFavorite(
+          action.payload?.meals,
+          state.favoriteRecipes
+        );
         state.isLoading = false;
       })
       .addCase(fetchRecipes.pending, (state) => {
