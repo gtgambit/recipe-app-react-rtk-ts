@@ -15,7 +15,7 @@ const Header = () => {
       <div className={style.container}>
         <NavLink to="/" className={style.logoLink}>
           <img src={logo} alt="brand logo" width={30} height={30} />
-          <span>Recipes</span>
+          <span>Recipes Manager</span>
         </NavLink>
 
         <nav>
@@ -43,11 +43,11 @@ const Header = () => {
 
         <div className={style.rightSide}>
           {token ? (
-            <Button sx={{ p: 0 }} variant="outlined">
+            <Button variant="outlined">
               <NavLink to="/profile" className={style.profileLink}></NavLink>
             </Button>
           ) : (
-            <Button sx={{ p: 0 }} variant="outlined">
+            <Button variant="outlined">
               <NavLink to="/login" className={style.loginLink}>
                 Sign In
               </NavLink>

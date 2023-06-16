@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 
 import style from "./Footer.module.scss";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer>
       <Grid container className={style.footer} justifyContent="center">
