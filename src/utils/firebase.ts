@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC_lE0668hwlYXylLiPMPNLaXMvLYEaKTw",
-  authDomain: "alterego-test.firebaseapp.com",
-  projectId: "alterego-test",
-  storageBucket: "alterego-test.appspot.com",
-  messagingSenderId: "373581046067",
-  appId: "1:373581046067:web:6bf2251b42e6a36bd7de46",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const firebaseSetup = initializeApp(firebaseConfig);
