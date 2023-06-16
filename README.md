@@ -9,7 +9,6 @@ Additionally, the following libraries were utilized:
 ###Redux Persist: To synchronize the favorites store with local storage.
 Firebase For user Registration and Authorization.
 React Router DOM: For routing purposes.
-React Toastify: To display toast notifications.
 React Hook Form + Yup: For form management and validation.
 SCSS and MUI: For styling the application.
 Axios: For making HTTP requests.
