@@ -15,8 +15,6 @@ import {
 import { handleImageError } from "../../utils/imageErrorHandler";
 import { Recipe } from "../../types/types";
 
-import style from "./RecipeCard.module.scss";
-
 interface RecipeCardProps {
   recipe: Recipe;
 }
@@ -47,16 +45,34 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card className={style.cardContainer}>
+      <Card
+        sx={{
+          position: "relative",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}>
         {token ? (
           <Typography
             variant="body1"
             component="p"
-            className={style.cardTitleMain}>
+            sx={{
+              alignItems: "center",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              margin: "0.5rem auto",
+            }}>
             {recipe.strMeal}
           </Typography>
         ) : (
-          <Typography className={style.signInText}>
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "red",
+              margin: "0 auto",
+              marginBottom: "5px",
+            }}>
             Sign in to access Recipe title
           </Typography>
         )}
@@ -68,12 +84,22 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
             component="img"
             src={recipe.strMealThumb}
             loading="lazy"
-            className={style.media}
             alt={title}
             onError={handleImageError}
+            sx={{
+              height: "250px",
+            }}
           />
-          <CardContent className={style.cardContent}>
-            <Typography variant="body1" component="p" className={style.title}>
+          <CardContent>
+            <Typography
+              variant="body1"
+              component="p"
+              sx={{
+                fontSize: "1.2rem",
+                fontWeight: "bold",
+                marginTop: "0.6rem",
+                marginBottom: "0.6rem",
+              }}>
               {title}
             </Typography>
           </CardContent>
@@ -82,23 +108,37 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
           <>
             <IconButton
               aria-label="star"
-              className={style.favoriteBtn}
-              onClick={onClickToggleIsFavorite}>
-              <Star className={recipe.isFavorite ? style.favorite : ""} />
+              onClick={onClickToggleIsFavorite}
+              sx={{
+                position: "absolute",
+                bottom: "4px",
+                right: "35px",
+              }}>
+              <Star sx={{ fill: recipe.isFavorite ? "gold" : "white" }} />
             </IconButton>
             {isFavoritePage ? (
               ""
             ) : (
               <IconButton
                 aria-label="delete"
-                className={style.deleteBtn}
-                onClick={onClickDeleteRecipe}>
+                onClick={onClickDeleteRecipe}
+                sx={{
+                  position: "absolute",
+                  bottom: "2px",
+                  right: "2px",
+                }}>
                 <DeleteIcon />
               </IconButton>
             )}
           </>
         ) : (
-          <Typography className={style.signInText}>
+          <Typography
+            sx={{
+              textAlign: "center",
+              color: "red",
+              margin: "0 auto",
+              marginBottom: "5px",
+            }}>
             Sign in to access all functionality
           </Typography>
         )}
