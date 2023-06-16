@@ -47,7 +47,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card className={style.root}>
+      <Card className={style.cardContainer}>
         {token ? (
           <Typography variant="body1" component="p" className={style.titleMain}>
             {recipe.strMeal}
