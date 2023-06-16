@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { logout } from "../../store/auth/authSlice";
 import { auth } from "../../utils/firebase";
 
-import { classes } from "./ProfilePageStyle";
+import style from "./ProfilePage.module.scss";
 import user from "../../assets/user.png";
 
 const ProfilePage = () => {
@@ -38,9 +38,9 @@ const ProfilePage = () => {
   return (
     <section>
       <div className="container">
-        <Card sx={classes.card}>
+        <Card className={style.card}>
           <CardMedia
-            sx={classes.media}
+            className={style.media}
             component="img"
             src={user}
             alt="Profile picture"
@@ -50,7 +50,7 @@ const ProfilePage = () => {
               gutterBottom
               variant="h5"
               component="h2"
-              sx={classes.title}>
+              className={style.title}>
               {email}
             </Typography>
             <LoadingButton

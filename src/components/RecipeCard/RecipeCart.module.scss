@@ -1,0 +1,48 @@
+.root {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.media {
+  height: 250px;
+}
+
+.titleMain {
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem auto;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.favoriteBtn {
+  position: absolute;
+  bottom: 4px;
+  right: 35px;
+}
+
+.deleteBtn {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+}
+
+.goldStar {
+  fill: gold;
+}
+
+.signInText {
+  text-align: center;
+  color: red;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}

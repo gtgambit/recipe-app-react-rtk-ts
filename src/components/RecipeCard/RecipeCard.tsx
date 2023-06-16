@@ -14,7 +14,8 @@ import {
 } from "../../store/recipes/recipesSlice";
 import { handleImageError } from "../../utils/imageErrorHandler";
 import { Recipe } from "../../types/types";
-import { classes } from "./RecipeCardStyle";
+
+import style from "./RecipeCart.module.scss";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -46,19 +47,13 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Card sx={classes.root}>
+      <Card className={style.root}>
         {token ? (
-          <Typography variant="body1" component="p" sx={classes.titleMain}>
+          <Typography variant="body1" component="p" className={style.titleMain}>
             {recipe.strMeal}
           </Typography>
         ) : (
-          <Typography
-            sx={{
-              textAlign: "center",
-              color: "red",
-              marginBottom: "5px",
-              marginTop: "5px",
-            }}>
+          <Typography className={style.signInText}>
             Sign in to access Recipe title
           </Typography>
         )}
@@ -70,44 +65,37 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
             component="img"
             src={recipe.strMealThumb}
             loading="lazy"
-            sx={classes.media}
+            className={style.media}
             alt={title}
             onError={handleImageError}
           />
-          <CardContent sx={{ marginBottom: "0px" }}>
-            <Typography variant="body1" component="p" sx={classes.title}>
+          <CardContent className={style.cardContent}>
+            <Typography variant="body1" component="p" className={style.title}>
               {title}
             </Typography>
           </CardContent>
         </Link>
         {token ? (
           <>
-            {}
             <IconButton
               aria-label="star"
-              sx={classes.favoriteBtn}
+              className={style.favoriteBtn}
               onClick={onClickToggleIsFavorite}>
-              <Star sx={{ fill: recipe.isFavorite ? "gold" : "white" }} />
+              <Star className={recipe.isFavorite ? style.goldStar : ""} />
             </IconButton>
             {isFavoritePage ? (
               <></>
             ) : (
               <IconButton
                 aria-label="delete"
-                sx={classes.deleteBtn}
+                className={style.deleteBtn}
                 onClick={onClickDeleteRecipe}>
                 <DeleteIcon />
               </IconButton>
             )}
           </>
         ) : (
-          <Typography
-            sx={{
-              textAlign: "center",
-              margin: "0 auto",
-              color: "red",
-              marginBottom: "5px",
-            }}>
+          <Typography className={style.signInText}>
             Sign in to access all functionality
           </Typography>
         )}

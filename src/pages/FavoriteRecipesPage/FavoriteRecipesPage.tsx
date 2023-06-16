@@ -5,8 +5,9 @@ import { useAppSelector } from "../../hooks/redux-hooks";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import Page404 from "../Page404/Page404";
 import { Loader } from "../../components/Loader/Loader";
+import { Recipe } from "../../types/types";
 
-import s from "./FavoriteRecipesPage.module.scss";
+import style from "./FavoriteRecipesPage.module.scss";
 
 const FavoriteRecipesPage = () => {
   const { isLoading, error, favoriteRecipes } = useAppSelector(
@@ -20,7 +21,15 @@ const FavoriteRecipesPage = () => {
 
   return (
     <section>
-      <div className={`container ${s.container}`}>
+      <div className={`container ${style.container}`}>
+        {token ? (
+          <Typography variant="h5" className={style.mainTitle}>
+            Favorite Recipes
+          </Typography>
+        ) : (
+          ""
+        )}
+
         {isLoading ? (
           <Loader />
         ) : (
@@ -33,7 +42,7 @@ const FavoriteRecipesPage = () => {
                   </Typography>
                 )}
 
-                {favoriteRecipes.map((recipe) => (
+                {favoriteRecipes.map((recipe: Recipe) => (
                   <RecipeCard recipe={recipe} key={recipe.idMeal} />
                 ))}
               </Grid>

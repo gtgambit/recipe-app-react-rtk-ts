@@ -13,7 +13,7 @@ import { fetchRecipes } from "../../store/recipes/recipesThunks";
 import { Loader } from "../../components/Loader/Loader";
 import { Recipe } from "../../types/types";
 
-import s from "./GeneralRecipesPage.module.scss";
+import style from "./GeneralRecipesPage.module.scss";
 
 const filterMealsByNameOrLetter = (recipes: Recipe[], inputValue: string) => {
   return recipes.filter((recipe) => {
@@ -56,7 +56,7 @@ const GeneralRecipesPage = () => {
 
   return (
     <section>
-      <div className={`container ${s.container}`}>
+      <div className={`container ${style.container}`}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Input
             onChange={handleChange}

@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 
 import Button from "@mui/material/Button/Button";
 
-import s from "./Page404.module.scss";
+import style from "./Page404.module.scss";
 
 const Page404: FC = () => {
   return (
-    <div className={s.errorContainer}>
-      <p className={s.error}>{`⚠ Error: Page Not Found`}</p>
+    <div className={style.errorContainer}>
+      <p className={style.error}>{`⚠ Error: Page Not Found`}</p>
       <NavLink to="/">
         <Button variant="contained" sx={{ mt: 4 }}>
           Back to Home

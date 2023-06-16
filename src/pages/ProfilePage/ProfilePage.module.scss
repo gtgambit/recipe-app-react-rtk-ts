@@ -1,0 +1,24 @@
+.card {
+  max-width: 500px;
+  margin-top: 2px;
+  padding: 20px 50px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.media {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 1px;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 1px;
+}

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../../hooks/redux-hooks";
 import Button from "@mui/material/Button/Button";
 
-import s from "./Header.module.scss";
+import style from "./Header.module.scss";
 
 import logo from "./../../../assets/logo.png";
 
@@ -11,20 +11,20 @@ const Header = () => {
   const token = useAppSelector((state: any) => state.auth.token);
 
   return (
-    <header className={s.header}>
-      <div className={s.container}>
-        <NavLink to="/" className={s.logoLink}>
+    <header className={style.header}>
+      <div className={style.container}>
+        <NavLink to="/" className={style.logoLink}>
           <img src={logo} alt="brand logo" width={30} height={30} />
           <span>Recipes</span>
         </NavLink>
 
         <nav>
-          <ul className={s.navList}>
+          <ul className={style.navList}>
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `${s.link} ${isActive ? s.linkActive : ""}`
+                  `${style.link} ${isActive ? style.linkActive : ""}`
                 }>
                 Home
               </NavLink>
@@ -33,22 +33,22 @@ const Header = () => {
               <NavLink
                 to="/favorite"
                 className={({ isActive }) =>
-                  `${s.link} ${isActive ? s.linkActive : ""}`
+                  `${style.link} ${isActive ? style.linkActive : ""}`
                 }>
-                Favorite Recipes
+                Favorite
               </NavLink>
             </li>
           </ul>
         </nav>
 
-        <div className={s.rightSide}>
+        <div className={style.rightSide}>
           {token ? (
             <Button sx={{ p: 0 }} variant="outlined">
-              <NavLink to="/profile" className={s.profileLink}></NavLink>
+              <NavLink to="/profile" className={style.profileLink}></NavLink>
             </Button>
           ) : (
             <Button sx={{ p: 0 }} variant="outlined">
-              <NavLink to="/login" className={s.loginLink}>
+              <NavLink to="/login" className={style.loginLink}>
                 Sign In
               </NavLink>
             </Button>
