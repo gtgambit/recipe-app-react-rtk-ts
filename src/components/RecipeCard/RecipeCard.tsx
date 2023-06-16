@@ -15,7 +15,7 @@ import {
 import { handleImageError } from "../../utils/imageErrorHandler";
 import { Recipe } from "../../types/types";
 
-import style from "./RecipeCart.module.scss";
+import style from "./RecipeCard.module.scss";
 
 interface RecipeCardProps {
   recipe: Recipe;
