@@ -49,7 +49,10 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
     <Grid item xs={12} sm={6} md={4}>
       <Card className={style.cardContainer}>
         {token ? (
-          <Typography variant="body1" component="p" className={style.titleMain}>
+          <Typography
+            variant="body1"
+            component="p"
+            className={style.cardTitleMain}>
             {recipe.strMeal}
           </Typography>
         ) : (
@@ -81,10 +84,10 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => {
               aria-label="star"
               className={style.favoriteBtn}
               onClick={onClickToggleIsFavorite}>
-              <Star className={recipe.isFavorite ? style.goldStar : ""} />
+              <Star className={recipe.isFavorite ? style.favorite : ""} />
             </IconButton>
             {isFavoritePage ? (
-              <></>
+              ""
             ) : (
               <IconButton
                 aria-label="delete"
